@@ -8,6 +8,6 @@ export class AppService {
   }
 
   getHello(): string {
-    return this.configService.get('DB_DATABASE')
+    return this.configService.get('APP_PORT')
   }
 }

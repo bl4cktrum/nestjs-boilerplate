@@ -1,5 +1,6 @@
 import { DataSource, DataSourceOptions } from "typeorm";
-
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "../src/app.module";
 
 export const dataSourceOptions: DataSourceOptions = {
   type: "postgres",

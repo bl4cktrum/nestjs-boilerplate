@@ -3,16 +3,18 @@
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center"><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository based poiler plate.</p>
     <p align="center">
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository based poiler plate.
+
 <ul>
     <li>Database connection handled by <a href="https://typeorm.io/">typeorm</a> and <a href="https://docs.nestjs.com/techniques/database">@nestjs/typeorm</a> module</li>
+<li>Multiple environment configuration handled by <a href="https://www.npmjs.com/package/cross-env">cross-env</a> and <a href="https://docs.nestjs.com/techniques/configuration">@nestjs/config</a> module</li>
 </ul>
 
 ## Running the app
@@ -28,8 +30,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
- ## Typeorm Implementation
-`Database informations` are specified in `data-source.ts` file. Also `entities'` path and `migration folder` path are.   
+## Typeorm Implementation
+
+`Database informations` are specified in `data-source.ts` file. Also `entities'` path and `migration folder` path are.
+
 ```json
 // package.json
 // first one is placed to just handle data-source. So it is recommended to use migration:* 
@@ -42,13 +46,20 @@ $ npm run start:prod
 ...
 }
 ```
+
 to generate a new migration ```npm run migration:generate -- <output_path>```
+
 ```bash
 $ npm run migration:generate -- db/migrations/initial
 ```
 
+## Environment Variables
 
-### do not forget the ignore env files from .gitignore
+Set vars in `.env` files then add and/or check new var in `src/app.config.ts` <br>
+If you want to create new environment you have to create new scripts that sets `NODE_ENV` to run app in your env.
+
+### ! Do not forget the ignore env files from .gitignore
+
 ```markdown
 // .gitignore
 
