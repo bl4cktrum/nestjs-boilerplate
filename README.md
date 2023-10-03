@@ -47,6 +47,15 @@ to generate a new migration ```npm run migration:generate -- <output_path>```
 $ npm run migration:generate -- db/migrations/initial
 ```
 
+
+### do not forget the ignore env files from .gitignore
+```markdown
+// .gitignore
+
+**/*.env
+!env/dev.env
+```
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
