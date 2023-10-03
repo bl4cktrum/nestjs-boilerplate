@@ -28,7 +28,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
- ## Migrations
+ ## Typeorm Implementation
+`Database informations` are specified in `data-source.ts` file. Also `entities'` path and `migration folder` path are.   
 ```json
 // package.json
 // first one is placed to just handle data-source. So it is recommended to use migration:* 
