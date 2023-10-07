@@ -1,6 +1,7 @@
 import { AfterLoad, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { hash } from "bcrypt";
 import { Exclude, Expose } from "class-transformer";
+import { ApiHideProperty } from "@nestjs/swagger";
 
 @Entity('users')
 export class User {
@@ -22,10 +23,12 @@ export class User {
   @Expose({name: 'last_name'})
   lastName: string;
 
+  @ApiHideProperty()
   @Column({name: 'password'})
   @Exclude({toPlainOnly: true})
   password: string;
 
+  @ApiHideProperty()
   @Exclude({toPlainOnly: true})
   tempPassword: string;
 
