@@ -6,7 +6,7 @@
 
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center"><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository based poiler plate.</p>
+  <p align="center"><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository based poiler plate. <br>(Based on Node.js 18.18.0 LTS) </p>
     <p align="center">
 
 ## Description
@@ -32,7 +32,7 @@ $ npm run start:prod
 
 ## Typeorm Implementation
 
-`Database informations` are specified in `data-source.ts` file. Also `entities'` path and `migration folder` path are.
+`Database informations` are specified in `src/db/data-source.ts` file. Also `entities'` path and `migration folder` path are. If you change the location of this file, do not forget to update the script.
 
 ```json
 // package.json
@@ -40,17 +40,17 @@ $ npm run start:prod
 "scripts": {
 ...
 "typeorm": "npm run build && typeorm -d dist/db/data-source.js",
-"migration:generate": "npm run typeorm -- migration:generate",
+"migration:generate": "ts-node src/utils/migration-generate.ts",
 "migration:run": "npm run typeorm -- migration:run",
 "migration:revert": "npm run typeorm -- migration:revert"
 ...
 }
 ```
 
-to generate a new migration ```npm run migration:generate -- <output_path>```
+to generate a new migration ```npm run migration:generate -- <output_file_name>```
 
 ```bash
-$ npm run migration:generate -- db/migrations/initial
+$ npm run migration:generate -- CreateUserTable
 ```
 
 ## Environment Variables
