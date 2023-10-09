@@ -1,9 +1,11 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, Response } from "@nestjs/common";
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from "./user.repository";
 import { User } from "./entities/user.entity";
 import { plainToClass } from "class-transformer";
+import { ApiResponse } from "../../infrastructure/responses/ApiResponse";
+import { ApiException } from "../../infrastructure/exceptions/api.exception";
 
 @Injectable()
 export class UserService {
@@ -32,11 +34,13 @@ export class UserService {
       ...plainToClass(User,updateUserDto, {exposeUnsetFields: false})
     });
     userToSave.tempPassword = user.tempPassword;
-    return await this.usersRepository.save(userToSave);
+    let data = await this.usersRepository.save(userToSave);
+    return ApiResponse.success().setData(data)
   }
 
   async remove(id: string) {
-    const user = await this.usersRepository.findOneByOrFail({ id: id });
-    return this.usersRepository.remove(user);
+    const user = await this.usersRepository.findOneByOrFail({id: id});
+    await this.usersRepository.softDelete(id);
+    return ApiResponse.success().setData(user);
   }
 }

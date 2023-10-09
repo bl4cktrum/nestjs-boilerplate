@@ -1,7 +1,15 @@
-import { AfterLoad, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  AfterLoad,
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn
+} from "typeorm";
 import { hash } from "bcrypt";
 import { Exclude, Expose } from "class-transformer";
 import { ApiHideProperty } from "@nestjs/swagger";
+import { TimestampEntity } from "../../../infrastructure/bases/timestamp.entity";
 
 @Entity('users')
 export class User {
@@ -23,10 +31,15 @@ export class User {
   @Expose({name: 'last_name'})
   lastName: string;
 
-  @ApiHideProperty()
   @Column({name: 'password'})
   @Exclude({toPlainOnly: true})
+  @ApiHideProperty()
   password: string;
+
+  @Column(()=> TimestampEntity, {prefix: false})
+  @Exclude({toPlainOnly: true})
+  @ApiHideProperty()
+  timestamp: TimestampEntity;
 
   @ApiHideProperty()
   @Exclude({toPlainOnly: true})
