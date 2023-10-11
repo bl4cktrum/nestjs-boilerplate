@@ -34,13 +34,11 @@ export class UserService {
       ...plainToClass(User,updateUserDto, {exposeUnsetFields: false})
     });
     userToSave.tempPassword = user.tempPassword;
-    let data = await this.usersRepository.save(userToSave);
-    return ApiResponse.success().setData(data)
+    return await this.usersRepository.save(userToSave);
   }
 
   async remove(id: string) {
     const user = await this.usersRepository.findOneByOrFail({id: id});
-    await this.usersRepository.softDelete(id);
-    return ApiResponse.success().setData(user);
+    return await this.usersRepository.softDelete(id);
   }
 }
