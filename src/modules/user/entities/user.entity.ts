@@ -7,17 +7,16 @@ import {
   PrimaryGeneratedColumn
 } from "typeorm";
 import { hash } from "bcrypt";
-import { Exclude, Expose } from "class-transformer";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { Expose } from "class-transformer";
 import { TimestampEntity } from "../../../infrastructure/bases/timestamp.entity";
+import { Exclude } from "../../../infrastructure/decorators/exclude.decorator";
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid',{name: 'id'})
   id: string;
 
-  // TODO: will be { unique: true }
-  @Column({name: 'email'})
+  @Column({name: 'email', unique: true})
   email: string
 
   @Column({name: 'first_name'})
@@ -33,15 +32,12 @@ export class User {
 
   @Column({name: 'password'})
   @Exclude({toPlainOnly: true})
-  @ApiHideProperty()
   password: string;
 
   @Column(()=> TimestampEntity, {prefix: false})
   @Exclude({toPlainOnly: true})
-  @ApiHideProperty()
   timestamp: TimestampEntity;
 
-  @ApiHideProperty()
   @Exclude({toPlainOnly: true})
   tempPassword: string;
 

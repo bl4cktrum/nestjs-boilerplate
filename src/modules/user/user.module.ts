@@ -9,6 +9,6 @@ import { User } from "./entities/user.entity";
   imports:[TypeOrmModule.forFeature([User])], // register entity repository
   controllers: [UserController],
   providers: [UserService, UserRepository],
-  // exports: [UserService, UsersRepository] // add this only if you use service and/or custom repo within another module/service
+  exports: [UserService] // add this only if you use service and/or custom repo within another module/service
 })
 export class UserModule {}

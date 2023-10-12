@@ -10,4 +10,5 @@ export const appConfig = () => ({
   APP_CONTACT_EMAIL:process.env.APP_CONTACT_EMAIL,
   APP_VERSION:process.env.APP_VERSION,
   OPENAPI_PATH:process.env.OPENAPI_PATH,
+  JWT_SECRET:process.env.JWT_SECRET
 });
