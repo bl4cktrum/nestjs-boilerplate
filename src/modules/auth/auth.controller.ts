@@ -4,7 +4,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { LoginDto } from "./dto/login.dto";
 import { JwtAuth } from "../../infrastructure/decorators/jwt.decorator";
 import { AuthGuard } from "@nestjs/passport";
-import { ApiResponse } from "../../infrastructure/responses/ApiResponse";
+import { ApiResponse } from "../../infrastructure/responses/api.response";
 import { LoggedUser } from "../../infrastructure/decorators/logged-user.decorator";
 
 @ApiTags('auth')
