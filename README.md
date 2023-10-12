@@ -13,28 +13,20 @@
 
 
 <ul>
-    <li>Database connection handled by <a href="https://typeorm.io/">typeorm</a> and <a href="https://docs.nestjs.com/techniques/database">@nestjs/typeorm</a> module</li>
-<li>Multiple environment configuration handled by <a href="https://www.npmjs.com/package/cross-env">cross-env</a> and <a href="https://docs.nestjs.com/techniques/configuration">@nestjs/config</a> module</li>
+    <li>Database connection handled by <a href="https://typeorm.io/">typeorm</a> and <a href="https://docs.nestjs.com/techniques/database">@nestjs/typeorm</a> module.</li>
+    <li>Multiple environment configuration handled by <a href="https://www.npmjs.com/package/cross-env">cross-env</a> and <a href="https://docs.nestjs.com/techniques/configuration">@nestjs/config</a> module.</li>
+    <li>Authentication features implemented by <a href="https://www.passportjs.org/">passport.js</a>.</li>
+    <li><a href="https://www.npmjs.com/package/bcrypt">Bcrypt</a> has been used to hash and compare strings.</li>
+    <li>Exceptions has been handled by filters, responses has been standardized by interceptors, custom decorators and <a href="https://www.npmjs.com/package/class-transformer">class-transformer</a>. Check out user controller, service and entity to see usage example.</li>
 </ul>
 
-## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
 
 ## Typeorm Implementation
 
 `Database informations` are specified in `src/db/data-source.ts` file. Also `entities'` path and `migration folder` path are. If you change the location of this file, do not forget to update the script.
 
-```json
+```
 // package.json
 // first one is placed to just handle data-source. So it is recommended to use migration:* 
 "scripts": {
@@ -47,16 +39,16 @@ $ npm run start:prod
 }
 ```
 
-to generate a new migration ```npm run migration:generate -- <output_file_name>```
+to generate a new migration ```npm run migration:generate <output_file_name>```
 
 ```bash
 $ npm run migration:generate -- CreateUserTable
 ```
 
-## Environment Variables
+## Environment Variables & Configuration Service
 
-Set vars in `.env` files then add and/or check new var in `src/app.config.ts` <br>
-If you want to create new environment you have to create new scripts that sets `NODE_ENV` to run app in your env.
+Set vars in `.env` files then add the new var in `src/app.config.ts` to be able to use it from ConfigService.<br>
+If you want to create new `environment` you have to create new scripts that sets `NODE_ENV` to run app in your env.
 
 ### ! Do not forget the ignore env files from .gitignore
 
